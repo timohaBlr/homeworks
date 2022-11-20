@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals'
 import store from './s2-homeworks/hw10/bll/store'
 import {Provider} from 'react-redux'
 import HW1 from "./s2-homeworks/hw01/HW1";
+import HW2 from "./s2-homeworks/hw02/HW2";
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
@@ -13,6 +14,7 @@ root.render(
         {/*для дз 10*/}
         <Provider store={store}>
             <HW1/>
+            <HW2/>
         </Provider>
     </React.StrictMode>
 )
