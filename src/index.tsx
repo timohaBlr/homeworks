@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import App from './s1-main/App'
 import reportWebVitals from './reportWebVitals'
 import store from './s2-homeworks/hw10/bll/store'
 import {Provider} from 'react-redux'
 import HW1 from "./s2-homeworks/hw01/HW1";
 import HW2 from "./s2-homeworks/hw02/HW2";
+import HW3 from "./s2-homeworks/hw03/HW3";
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
@@ -15,6 +15,7 @@ root.render(
         <Provider store={store}>
             <HW1/>
             <HW2/>
+            <HW3/>
         </Provider>
     </React.StrictMode>
 )
