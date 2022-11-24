@@ -1,0 +1,61 @@
+.message {
+    width: 60%;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas: 'imageAndText'
+'time';
+    width: 600px;
+    margin: 10px;
+
+}
+
+
+.imageAndText {
+    grid-area: imageAndText;
+
+}
+
+.imageAndText img {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 10px;
+}
+
+.text {
+    display: grid;
+    background-color: #F5F7FB;
+    border-radius: 5px;
+    padding: 10px;
+    justify-self: center;
+
+
+}
+
+.text:after {
+
+    content: "";
+    position: relative;
+    right: 20px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-right: 13px solid #F5F7FB;
+    border-bottom: 12px solid transparent;
+}
+
+.name {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+}
+
+.messageText {
+    white-space:  pre-wrap;
+width: auto;
+}
+
+.time {
+    grid-area: time;
+}

@@ -1,0 +1,20 @@
+.App {
+    --header_height: 60px;
+    position: relative;
+    width: 1280px;
+    height: 1770px;
+    background: #FFFFFF;
+    font-weight: bolder;
+    color: #61dafb;
+
+}
+
+.hw {
+position: relative;
+    width: 60%;
+    padding: 70px;
+   }
+
+.hwTitle {
+
+}
