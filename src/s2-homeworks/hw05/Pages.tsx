@@ -1,9 +1,11 @@
 import React from 'react'
-import {Routes, Route, Navigate} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import Error404 from './pages/Error404'
 import PreJunior from './pages/PreJunior'
 import Junior from './pages/Junior'
 import JuniorPlus from './pages/JuniorPlus'
+
+import {CounterPage} from "../../Components/Counter/CounterPage";
 
 export const PATH = {
     PRE_JUNIOR: '/pre-junior',
@@ -24,6 +26,7 @@ function Pages() {
                 <Route path={'/pre-junior'} element={<PreJunior/>}/>
                 <Route path={'/junior'} element={<Junior/>}/>
                 <Route path={'/junior-plus'} element={<JuniorPlus/>}/>
+                <Route path={'/counter'} element={<CounterPage/>}/>
 
                 {/*роут для несуществующей страницы должен отрисовать <Error404 />*/}
                 <Route path={'*'} element={<Error404/>}/>
