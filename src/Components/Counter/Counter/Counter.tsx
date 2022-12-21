@@ -1,45 +1,42 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import s from './Counter.module.css'
 import {CustomButton} from "../CustomButton/CustomButton";
 
-type CounterPropsType = {}
+type CounterPropsType = {
+    counter: number
+    setCounter: (count: number) => void
+    startValue: number
+    maxValue: number
+}
 
 
 export const Counter = (props: CounterPropsType) => {
-    const [counter, setCounter] = useState<number>(0)
-
-
-    useEffect(() => {
-        let value = localStorage.getItem('startValue')
-        if (value) {
-            setCounter(JSON.parse(value))
-        }
-    }, )
 
     const incrementHandler = () => {
-        setCounter(counter + 1)
+        props.setCounter(props.counter + 1)
     }
     const resetHandler = () => {
-        setCounter(0)
+        props.setCounter(props.startValue)
     }
 
-    let counterClassName = counter !== 5
+
+    let counterClassName = props.counter !== props.maxValue
         ? s.display
         : s.display + ' ' + s.disabled
     return (
         <div className={s.counter}>
             <div className={counterClassName}>
-                {counter}
+                {props.counter}
             </div>
             <div className={s.buttons}>
                 <CustomButton
                     onClick={incrementHandler}
-                    disabled={counter === 5}>
+                    disabled={props.counter === props.maxValue}>
                     Inc
                 </CustomButton>
                 <CustomButton
                     onClick={resetHandler}
-                    disabled={!counter}
+                    disabled={!props.counter}
                 >
                     Reset
                 </CustomButton>

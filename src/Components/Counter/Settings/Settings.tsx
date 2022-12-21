@@ -1,34 +1,56 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import s from './Settings.module.css'
 import {CustomButton} from "../CustomButton/CustomButton";
 
 type SettingsPropsType = {
-
+    error: boolean
+    setError: (error: boolean) => void
+    maxValue: number
+    setMaxValue: (value: number) => void
+    startValue: number
+    setStartValue: (value: number) => void
+    setCounter:(counter: number) => void
 }
 
 export const Settings = (props: SettingsPropsType) => {
-    const [maxValue, setMaxValue] = useState<number>(1);
-    const [startValue, setStartValue] = useState<number>(0);
-    const [error, setError] = useState<boolean>(false);
+    const [mValue, setMValue] = useState<number>(1);
+    const [sValue, setSValue] = useState<number>(0);
+
+
+    useEffect(() => {
+        let value = localStorage.getItem('maxValue')
+        if (value) {
+            props.setMaxValue(JSON.parse(value))
+        }
+
+        let value1 = localStorage.getItem('startValue')
+        if (value1) {
+            props.setCounter(JSON.parse(value1))
+        }
+        console.log()
+    }, [])
 
     const onChangeHandlerMax = (event: ChangeEvent<HTMLInputElement>) => {
-        setError(false)
+        props.setError(false)
         let value = Number(event.currentTarget.value);
-        setMaxValue(value)
-        setError(proverka(value, startValue))
+        setMValue(value)
+        props.setError(proverka(value, sValue))
     }
     const onChangeHandlerStart = (event: ChangeEvent<HTMLInputElement>) => {
-        setError(false)
+        props.setError(false)
         let value = Number(event.currentTarget.value);
-        setStartValue(value)
-        setError(proverka(maxValue, value))
+        setSValue(value)
+        props.setError(proverka(mValue, value))
     }
     const proverka = (maxValue: number, startValue: number) => {
         return (maxValue < 0 || startValue < 0) ? true : maxValue <= startValue
     }
-const onClickHandler = () => {
-    localStorage.setItem('maxValue', JSON.stringify(maxValue))
-    localStorage.setItem('startValue', JSON.stringify(startValue))
+    const onClickHandler = () => {
+        props.setMaxValue(mValue)
+        props.setStartValue(sValue)
+        props.setCounter(sValue)
+        localStorage.setItem('maxValue', JSON.stringify(mValue))
+        localStorage.setItem('startValue', JSON.stringify(sValue))
     }
     return (
 
@@ -38,14 +60,14 @@ const onClickHandler = () => {
                     <input type={'number'}
                            className={s.input}
                            onChange={onChangeHandlerMax}
-                           value={maxValue}>
+                           value={mValue}>
                     </input>
                 </div>
                 <div> start value:
                     <input type={"number"}
                            className={s.input}
                            onChange={onChangeHandlerStart}
-                           value={startValue}>
+                           value={sValue}>
                     </input>
                 </div>
 
@@ -53,7 +75,7 @@ const onClickHandler = () => {
             <div className={s.buttons}>
                 <CustomButton
                     onClick={onClickHandler}
-                disabled={error}>
+                    disabled={props.error}>
                     Set
                 </CustomButton>
             </div>
