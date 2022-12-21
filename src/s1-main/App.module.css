@@ -10,11 +10,18 @@
 }
 
 .hw {
-position: relative;
-    width: 60%;
-    padding: 70px;
-   }
+    position: relative;
+    padding: 20px 70px;
+    border-bottom: 1px solid #D9D9D9;
+}
 
 .hwTitle {
-
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+    padding: 20px 70px;
+    border-bottom: 1px solid #D9D9D9;
 }
