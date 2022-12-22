@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './Settings.module.css'
 import {CustomButton} from "../CustomButton/CustomButton";
 
@@ -9,26 +9,13 @@ type SettingsPropsType = {
     setMaxValue: (value: number) => void
     startValue: number
     setStartValue: (value: number) => void
-    setCounter:(counter: number) => void
+    setCounter: (counter: number) => void
+    setPage: (page: boolean) => void
 }
 
 export const Settings = (props: SettingsPropsType) => {
     const [mValue, setMValue] = useState<number>(1);
     const [sValue, setSValue] = useState<number>(0);
-
-
-    useEffect(() => {
-        let value = localStorage.getItem('maxValue')
-        if (value) {
-            props.setMaxValue(JSON.parse(value))
-        }
-
-        let value1 = localStorage.getItem('startValue')
-        if (value1) {
-            props.setCounter(JSON.parse(value1))
-        }
-        console.log()
-    }, [])
 
     const onChangeHandlerMax = (event: ChangeEvent<HTMLInputElement>) => {
         props.setError(false)
@@ -51,6 +38,7 @@ export const Settings = (props: SettingsPropsType) => {
         props.setCounter(sValue)
         localStorage.setItem('maxValue', JSON.stringify(mValue))
         localStorage.setItem('startValue', JSON.stringify(sValue))
+        props.setPage(true)
     }
     return (
 
@@ -70,12 +58,11 @@ export const Settings = (props: SettingsPropsType) => {
                            value={sValue}>
                     </input>
                 </div>
-
             </div>
             <div className={s.buttons}>
                 <CustomButton
                     onClick={onClickHandler}
-                    disabled={props.error}>
+                    disabled={false}>
                     Set
                 </CustomButton>
             </div>

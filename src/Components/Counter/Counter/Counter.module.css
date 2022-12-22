@@ -25,7 +25,12 @@
 .disabled {
     color: red;
 }
+.error {
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
 
+}
 .buttons {
     border: 3px solid #61dafb;
     border-radius: 30px;
