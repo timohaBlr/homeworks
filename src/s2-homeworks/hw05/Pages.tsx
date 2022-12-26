@@ -5,12 +5,12 @@ import PreJunior from './pages/PreJunior'
 import Junior from './pages/Junior'
 import JuniorPlus from './pages/JuniorPlus'
 
-import {CounterPage} from "../../Components/Counter/CounterPage";
+import {CounterPage} from "../../Components/CounterPage/CounterPage";
 
 export const PATH = {
     PRE_JUNIOR: '/pre-junior',
     JUNIOR: '/junior',
-    JUNIOR_PLUS: '/junior-plus',
+    JUNIOR_PLUS: '/sjunior-plus',
 }
 
 function Pages() {
@@ -23,9 +23,9 @@ function Pages() {
                 <Route path={'/'} element={<PreJunior/>}/>
 
                 {/*роуты для /pre-junior, /junior, /junior-plus*/}
-                <Route path={'/pre-junior'} element={<PreJunior/>}/>
-                <Route path={'/junior'} element={<Junior/>}/>
-                <Route path={'/junior-plus'} element={<JuniorPlus/>}/>
+                <Route path={PATH.PRE_JUNIOR} element={<PreJunior/>}/>
+                <Route path={PATH.JUNIOR} element={<Junior/>}/>
+                <Route path={PATH.JUNIOR_PLUS} element={<JuniorPlus/>}/>
                 <Route path={'/counter'} element={<CounterPage/>}/>
 
                 {/*роут для несуществующей страницы должен отрисовать <Error404 />*/}

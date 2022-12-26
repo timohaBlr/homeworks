@@ -8,7 +8,7 @@ type CounterPropsType = {
     startValue: number
     maxValue: number
     error: boolean
-    setPage: (page:boolean) => void
+    setPage: (page: boolean) => void
 }
 
 
@@ -21,7 +21,7 @@ export const Counter = (props: CounterPropsType) => {
         props.setCounter(props.startValue)
     }
     const setHandler = () => {
-      props.setPage(false)
+        props.setPage(false)
     }
 
     const butIncDisabled = props.error ? props.error : props.counter === props.maxValue
@@ -31,15 +31,15 @@ export const Counter = (props: CounterPropsType) => {
         ? s.display
         : s.display + ' ' + s.disabled
     const errorClassName = props.error
-        ? s.display+ ' ' + s.error
+        ? s.display + ' ' + s.error
         : s.display
 
     return (
         <div className={s.counter}> {props.error
             ? <div className={errorClassName}>incorrect value</div>
             : <div className={counterClassName}>
-            {props.counter}
-        </div>}
+                {props.counter}
+            </div>}
 
             <div className={s.buttons}>
                 <CustomButton
@@ -55,7 +55,7 @@ export const Counter = (props: CounterPropsType) => {
                 </CustomButton>
                 <CustomButton
                     onClick={setHandler}
-                    disabled={false}>
+                >
                     Set
                 </CustomButton>
             </div>
