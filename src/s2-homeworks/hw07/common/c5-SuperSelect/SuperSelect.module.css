@@ -1,12 +1,17 @@
 .select {
     width: 165px;
     height: 24px;
+
 }
 
 .select:focus {
-    /*background: #0066CC;*/
+    appearance: textfield;
+
 }
 
+select {
+
+}
 
 .option:hover {
     font-family: 'Montserrat';
@@ -15,4 +20,5 @@
     font-size: 14px;
     line-height: 17px;
     color: #0066CC;
+    background-color: #FFFFFF;
 }
