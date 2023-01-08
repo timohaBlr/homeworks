@@ -24,10 +24,7 @@
     flex-direction: row;
     justify-content: right;
     padding: 10px;
-}
-
-.buttonsContainer button {
-    margin-left: 10px;
+    gap: 10px;
 }
 
 .container {
