@@ -47,8 +47,7 @@ function Clock() {
     const stringDay = new Intl.DateTimeFormat('en', {
         weekday: "long",
     }).format(date)// пишут студенты
-    const  stringDate = new Intl.DateTimeFormat().format(date) // пишут студенты
-
+    const stringDate = new Intl.DateTimeFormat('ru').format(date) // пишут студенты
     return (
         <div className={s.clock}>
             <div
@@ -81,14 +80,14 @@ function Clock() {
             <div className={s.buttonsContainer}>
                 <SuperButton
                     id={'hw9-button-start'}
-                    disabled={timerId? true: false} // пишут студенты // задизэйблить если таймер запущен
+                    disabled={timerId ? true : false} // пишут студенты // задизэйблить если таймер запущен
                     onClick={start}
                 >
                     start
                 </SuperButton>
                 <SuperButton
                     id={'hw9-button-stop'}
-                    disabled={timerId? false: true} // пишут студенты // задизэйблить если таймер не запущен
+                    disabled={timerId ? false : true} // пишут студенты // задизэйблить если таймер не запущен
                     onClick={stop}
                 >
                     stop
