@@ -15,16 +15,13 @@ export const CounterPage = () => {
     }
 
     const page = useSelector<AppStoreType, boolean>(state => state.counter.page)
-    const error = useSelector<AppStoreType, boolean>(state => state.counter.error)
 
     return (
         <div style={style}>
             {page
                 ? <Counter
-                    error={error}
                 />
                 : <Settings
-                    error={error}
                 />}
 
         </div>

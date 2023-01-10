@@ -6,7 +6,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 type CustomButtonPropsType = DefaultButtonPropsType & {}
 
 
-export const CustomButton: React.FC<CustomButtonPropsType> = (
+export const CustomButton: React.FC<CustomButtonPropsType> = React.memo( (
     {
         className,
         disabled,
@@ -25,5 +25,6 @@ export const CustomButton: React.FC<CustomButtonPropsType> = (
         />
 
     );
-};
+});
+
 

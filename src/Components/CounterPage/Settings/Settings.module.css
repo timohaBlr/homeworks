@@ -24,7 +24,7 @@
 }
 
 .disabled {
-    color: red;
+    background-color: red;
 }
 
 .buttons {
@@ -46,9 +46,15 @@
     font-weight: bolder;
     cursor: pointer;
 }
+
 .input {
     text-align: center;
     margin-left: 20px;
     border-color: #397e91;
     border-radius: 5px;
+
+}
+
+.error {
+
 }

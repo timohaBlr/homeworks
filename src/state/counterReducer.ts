@@ -1,3 +1,5 @@
+export type ActionType = IncrementActionType | ResetActionType | ChangePageActionType | SetErrorActionType
+    | SetMaxValueActionType | SetStartValueActionType | SetMValueActionType | SetSValueActionType | SetCountActionType
 export type CounterStateType = {
     counter: number
     maxValue: number
@@ -7,6 +9,7 @@ export type CounterStateType = {
     mValue: number
     sValue: number
 }
+
 const initialSate: CounterStateType = {
     counter: 0,
     error: false,
@@ -26,11 +29,13 @@ export enum ACTIONS_TYPE {
     SET_START_VALUE = 'Counter/SET_START_VALUE',
     SET_S_VALUE = 'Counter/SET_S_VALUE',
     SET_M_VALUE = 'Counter/SET_M_VALUE',
+    SET_COUNT = 'Counter/SET_COUNT',
 }
-
 export  const counterReducer = (state: CounterStateType = initialSate, action: ActionType): CounterStateType => {
     switch (action.type) {
         case ACTIONS_TYPE.INCREMENT_TYPE:
+            return {...state, counter: action.payload.counter +1}
+        case ACTIONS_TYPE.SET_COUNT:
             return {...state, counter: action.payload.counter}
         case ACTIONS_TYPE.RESET_TYPE:
             return {...state, counter: state.startValue}
@@ -54,6 +59,15 @@ type IncrementActionType = ReturnType<typeof IncrementAC>
 export const IncrementAC = (counter: number) => {
     return {
         type: ACTIONS_TYPE.INCREMENT_TYPE,
+        payload: {
+            counter,
+        },
+    } as const
+}
+type SetCountActionType = ReturnType<typeof SetCountAC>
+export const SetCountAC = (counter: number) => {
+    return {
+        type: ACTIONS_TYPE.SET_COUNT,
         payload: {
             counter,
         },
@@ -116,6 +130,4 @@ export const SetMValueAC = (counter: number) => {
         },
     } as const
 }
-export type ActionType = IncrementActionType | ResetActionType | ChangePageActionType | SetErrorActionType
-    | SetMaxValueActionType | SetStartValueActionType | SetMValueActionType | SetSValueActionType
 
