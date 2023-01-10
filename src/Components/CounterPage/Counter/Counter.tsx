@@ -1,33 +1,34 @@
 import React from 'react';
 import s from './Counter.module.css'
 import {CustomButton} from "../CustomButton/CustomButton";
+import {useDispatch, useSelector} from "react-redux";
+import {ChangePageAC, IncrementAC, ResetAC} from "../../../state/counterReducer";
+import {AppStoreType} from "../../../s2-homeworks/hw10/bll/store";
 
 type CounterPropsType = {
-    counter: number
-    setCounter: (count: number) => void
-    startValue: number
-    maxValue: number
     error: boolean
-    setPage: (page: boolean) => void
 }
 
 
 export const Counter = (props: CounterPropsType) => {
+    const dispatch = useDispatch()
+    const counter = useSelector<AppStoreType, number>(state => state.counter.counter)
+    const maxValue = useSelector<AppStoreType, number>(state => state.counter.maxValue)
 
     const incrementHandler = () => {
-        props.setCounter(props.counter + 1)
+        dispatch(IncrementAC(counter + 1))
     }
     const resetHandler = () => {
-        props.setCounter(props.startValue)
+        dispatch(ResetAC())
     }
     const setHandler = () => {
-        props.setPage(false)
+        dispatch(ChangePageAC())
     }
 
-    const butIncDisabled = props.error ? props.error : props.counter === props.maxValue
-    const butResDisabled = props.error ? props.error : !props.counter
+    const butIncDisabled = props.error ? props.error : counter === maxValue
+    const butResDisabled = props.error ? props.error : !counter
 
-    const counterClassName = props.counter !== props.maxValue
+    const counterClassName = counter !== maxValue
         ? s.display
         : s.display + ' ' + s.disabled
     const errorClassName = props.error
@@ -38,7 +39,7 @@ export const Counter = (props: CounterPropsType) => {
         <div className={s.counter}> {props.error
             ? <div className={errorClassName}>incorrect value</div>
             : <div className={counterClassName}>
-                {props.counter}
+                {counter}
             </div>}
 
             <div className={s.buttons}>

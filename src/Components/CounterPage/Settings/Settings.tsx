@@ -1,44 +1,48 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Settings.module.css'
 import {CustomButton} from "../CustomButton/CustomButton";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    ChangePageAC,
+    IncrementAC,
+    SetErrorAC,
+    SetMaxValueAC,
+    SetMValueAC,
+    SetStartValueAC, SetSValueAC
+} from "../../../state/counterReducer";
+import {AppStoreType} from "../../../s2-homeworks/hw10/bll/store";
 
 type SettingsPropsType = {
     error: boolean
-    setError: (error: boolean) => void
-    maxValue: number
-    setMaxValue: (value: number) => void
-    startValue: number
-    setStartValue: (value: number) => void
-    setCounter: (counter: number) => void
-    setPage: (page: boolean) => void
 }
 
 export const Settings = (props: SettingsPropsType) => {
-    const [mValue, setMValue] = useState<number>(1);
-    const [sValue, setSValue] = useState<number>(0);
+
+    const dispatch = useDispatch()
+    const mValue = useSelector<AppStoreType, number>(state => state.counter.mValue)
+    const sValue = useSelector<AppStoreType, number>(state => state.counter.sValue)
+
 
     const onChangeHandlerMax = (event: ChangeEvent<HTMLInputElement>) => {
-        props.setError(false)
+        dispatch(SetErrorAC(false))
         let value = Number(event.currentTarget.value);
-        setMValue(value)
-        props.setError(proverka(value, sValue))
+        dispatch(SetMValueAC(value))
+        dispatch(SetErrorAC(proverka(value, sValue)))
     }
     const onChangeHandlerStart = (event: ChangeEvent<HTMLInputElement>) => {
-        props.setError(false)
+        dispatch(SetErrorAC(false))
         let value = Number(event.currentTarget.value);
-        setSValue(value)
-        props.setError(proverka(mValue, value))
+        dispatch(SetSValueAC(value))
+        dispatch(SetErrorAC(proverka(mValue, value)))
     }
     const proverka = (maxValue: number, startValue: number) => {
         return (maxValue < 0 || startValue < 0) ? true : maxValue <= startValue
     }
     const onClickHandler = () => {
-        props.setMaxValue(mValue)
-        props.setStartValue(sValue)
-        props.setCounter(sValue)
-        localStorage.setItem('maxValue', JSON.stringify(mValue))
-        localStorage.setItem('startValue', JSON.stringify(sValue))
-        props.setPage(true)
+        dispatch(SetMaxValueAC(mValue))
+        dispatch(SetStartValueAC(sValue))
+        dispatch(IncrementAC(sValue))
+        dispatch(ChangePageAC())
     }
     return (
 
