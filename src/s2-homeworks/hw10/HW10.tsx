@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {AppStoreType} from './bll/store'
 import {loadingAC} from './bll/loadingReducer'
@@ -15,13 +15,25 @@ import {Loader} from './Loader'
 
 const HW10 = () => {
     // useSelector, useDispatch // пишет студент
-    const isLoading = false
+    const dispatch = useDispatch()
+    const isLoading = useSelector<AppStoreType, boolean>(state => state.loading.isLoading)
+
+    useEffect(() => {
+        if (isLoading) {
+            const timer = setTimeout(() => {
+                dispatch(loadingAC(!isLoading))
+            }, 1500);
+            return () => clearTimeout(timer)
+        }
+    }, [isLoading])
 
     const setLoading = () => { // пишет студент // показать крутилку на 1,5 секунд
         // dispatch
-
+        dispatch(loadingAC(!isLoading))
         // setTimeout
+
     }
+
 
     return (
         <div id={'hw10'}>
