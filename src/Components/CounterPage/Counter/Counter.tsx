@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import s from './Counter.module.css'
 import {CustomButton} from "../CustomButton/CustomButton";
 import {useDispatch, useSelector} from "react-redux";
-import {ChangePageAC, SetCountAC, ResetAC, IncrementAC} from "../../../state/counterReducer";
+import {ChangePageAC,  ResetAC, IncrementAC} from "../../../state/counterReducer";
 import {AppStoreType} from "../../../s2-homeworks/hw10/bll/store";
 
 type CounterPropsType = {
@@ -14,7 +14,8 @@ export const Counter = (props: CounterPropsType) => {
     const dispatch = useDispatch()
     const counter = useSelector<AppStoreType, number>(state => state.counter.counter)
     const maxValue = useSelector<AppStoreType, number>(state => state.counter.maxValue)
-    const error = useSelector<AppStoreType, boolean>(state => state.counter.error)
+    const startValue = useSelector<AppStoreType, number>(state => state.counter.startValue)
+    // const error = useSelector<AppStoreType, boolean>(state => state.counter.error)
 
     const incrementHandler = useCallback(() => {
         dispatch(IncrementAC(counter))
@@ -27,31 +28,24 @@ export const Counter = (props: CounterPropsType) => {
     }, [])
 
 
-    const butIncDisabled = error ? error : counter === maxValue
-    const butResDisabled = error ? error : !counter
-
     const counterClassName = counter !== maxValue
         ? s.display
         : s.display + ' ' + s.disabled
-    const errorClassName = error
-        ? s.display + ' ' + s.error
-        : s.display
 
     return (
-        <div className={s.counter}> {error
-            ? <div className={errorClassName}>incorrect value</div>
-            : <div className={counterClassName}>
+        <div className={s.counter}>
+            <div className={counterClassName}>
                 {counter}
-            </div>}
+            </div>
             <div className={s.buttons}>
                 <CustomButton
                     onClick={incrementHandler}
-                    disabled={butIncDisabled}>
+                    disabled={counter === maxValue}>
                     Inc
                 </CustomButton>
                 <CustomButton
                     onClick={resetHandler}
-                    disabled={butResDisabled}
+                    disabled={counter === startValue}
                 >
                     Reset
                 </CustomButton>

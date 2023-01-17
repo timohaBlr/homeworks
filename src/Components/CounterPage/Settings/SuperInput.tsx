@@ -9,7 +9,7 @@ export const SuperInput:FC<SuperInputPropsType> = memo( ({label,...restProps} ) 
         <div>
             {label}
             <input
-                {...restProps}/>
+                   {...restProps}/>
         </div>
     )
 })
