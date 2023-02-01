@@ -26,7 +26,7 @@ store.subscribe(debounce(() => {
             startValue: store.getState().counter.startValue,
         },
         loading: store.getState().loading,
-        theme: undefined,
+        theme: store.getState().theme,
     })
 }, 1000))
 
